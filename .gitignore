@@ -1,0 +1,13 @@
+# IntelliJ IDEA
+.idea/
+
+# Gradle
+.gradle/
+build/
+
+# macOS
+.DS_Store
+
+# Hyperskill metadata
+course-info.yaml
+course-remote-info.yaml
