@@ -8,19 +8,19 @@ public class CoffeeMachine {
 
         //{water, milk, coffeBeans, disposableCups, money}
         int [] machineState = {400, 540, 120, 9, 550};
-        String userAction;
+        String userSelection;
 
         do {
             System.out.println();
             System.out.println("Write action (buy, fill, take, remaining, exit):");
 
-            userAction = input.nextLine();
+            userSelection = input.nextLine();
 
-            if (userAction.equals("fill")) {
+            if (userSelection.equals("fill")) {
                 fill(machineState, input);
-            } else if (userAction.equals("take")) {
+            } else if (userSelection.equals("take")) {
                 take(machineState);
-            } else if (userAction.equals("buy")) {
+            } else if (userSelection.equals("buy")) {
                 Coffee espresso =
                         new Coffee("Espresso", 250, 0, 16, 4);
                 Coffee latte =
@@ -41,7 +41,7 @@ public class CoffeeMachine {
                 if (selectedCoffee != null) {
                     buy(machineState, selectedCoffee);
                 }
-            } else if (userAction.equals("remaining")) {
+            } else if (userSelection.equals("remaining")) {
                 System.out.println();
                 System.out.println("The coffee machine has:");
                 System.out.println(machineState[0] + " ml of water");
@@ -50,7 +50,7 @@ public class CoffeeMachine {
                 System.out.println(machineState[3] + " disposable cups");
                 System.out.println("$" + machineState[4] + " of money");
             }
-        } while (!userAction.equals("exit"));
+        } while (!userSelection.equals("exit"));
 
     }
 
