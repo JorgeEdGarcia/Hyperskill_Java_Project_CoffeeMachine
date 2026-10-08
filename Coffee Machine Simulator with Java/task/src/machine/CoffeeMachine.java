@@ -3,6 +3,8 @@ import java.util.Scanner;
 
 public class CoffeeMachine {
 
+    static int coffeesMade = 0;
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
@@ -12,7 +14,7 @@ public class CoffeeMachine {
 
         do {
             System.out.println();
-            System.out.println("Write action (buy, fill, take, remaining, exit):");
+            System.out.println("Write action (buy, fill, take, clean, remaining, exit):");
 
             userSelection = input.nextLine();
 
@@ -21,26 +23,32 @@ public class CoffeeMachine {
             } else if (userSelection.equals("take")) {
                 take(machineState);
             } else if (userSelection.equals("buy")) {
-                Coffee espresso =
-                        new Coffee("Espresso", 250, 0, 16, 4);
-                Coffee latte =
-                        new Coffee("Latte", 350, 75, 20, 7);
-                Coffee cappuccino =
-                        new Coffee("Cappuccino", 200, 100, 12, 6);
 
-                System.out.println("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
-                String choice = input.nextLine();
+               if (coffeesMade >= 10) {
+                   System.out.println("I need cleaning!");
+               }else {
+                   Coffee espresso =
+                           new Coffee("Espresso", 250, 0, 16, 4);
+                   Coffee latte =
+                           new Coffee("Latte", 350, 75, 20, 7);
+                   Coffee cappuccino =
+                           new Coffee("Cappuccino", 200, 100, 12, 6);
 
-                Coffee selectedCoffee = switch (choice) {
-                    case "1" -> espresso;
-                    case "2" -> latte;
-                    case "3" -> cappuccino;
-                    case "back" -> null;
-                    default -> null;
-                };
-                if (selectedCoffee != null) {
-                    buy(machineState, selectedCoffee);
-                }
+                   System.out.println
+                           ("What do you want to buy? 1 - espresso, 2 - latte, 3 - cappuccino, back - to main menu:");
+                   String choice = input.nextLine();
+
+                   Coffee selectedCoffee = switch (choice) {
+                       case "1" -> espresso;
+                       case "2" -> latte;
+                       case "3" -> cappuccino;
+                       case "back" -> null;
+                       default -> null;
+                   };
+                   if (selectedCoffee != null) {
+                       buy(machineState, selectedCoffee);
+                   }
+               }
             } else if (userSelection.equals("remaining")) {
                 System.out.println();
                 System.out.println("The coffee machine has:");
@@ -49,6 +57,9 @@ public class CoffeeMachine {
                 System.out.println(machineState[2] + " g of coffee beans");
                 System.out.println(machineState[3] + " disposable cups");
                 System.out.println("$" + machineState[4] + " of money");
+            } else if (userSelection.equals("clean")) {
+                coffeesMade = 0;
+                System.out.println("I have been cleaned!");
             }
         } while (!userSelection.equals("exit"));
 
@@ -112,6 +123,8 @@ public class CoffeeMachine {
             machineState[2] -= coffee.coffeeBeans;
             machineState[3]--;
             machineState[4] += coffee.price;
+
+            coffeesMade++;
         }
     }
 }
