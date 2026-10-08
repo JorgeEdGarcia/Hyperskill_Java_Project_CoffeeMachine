@@ -3,23 +3,12 @@ import java.util.Scanner;
 
 public class CoffeeMachine {
 
-    final static int WATER_PER_CUP = 250;
-    final static int MILK_PER_CUP = 100;
-    final static int COFFEE_PER_CUP = 15;
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
         //{water, milk, coffeBeans, disposableCups, money}
         int [] machineState = {400, 540, 120, 9, 550};
-
-        System.out.println("The coffee machine has:");
-        System.out.println(machineState[0] + " ml of water");
-        System.out.println(machineState[1] + " ml of milk");
-        System.out.println(machineState[2] + " g of coffee beans");
-        System.out.println(machineState[3] + " disposable cups");
-        System.out.println("$"+machineState[4] + " of money");
-        System.out.println();
 
         System.out.println("Write action (buy, fill, take):");
         String userAction = input.nextLine();
@@ -59,30 +48,7 @@ public class CoffeeMachine {
         System.out.println(machineState[3] + " disposable cups");
         System.out.println("$"+machineState[4] + " of money");
 
-        /*System.out.println("Write how many ml of water the coffee machine has:");
-        int availableWater = input.nextInt();
 
-        System.out.println("Write how many ml of milk the coffee machine has:");
-        int availableMilk = input.nextInt();
-
-        System.out.println("Write how many grams of coffee beans the coffee machine has:");
-        int availableCoffee = input.nextInt();
-
-        System.out.println("Write how many cups of coffee you will need:");
-        int requiredCups = input.nextInt();
-
-        int availableCups = checkIngredients(availableWater, availableMilk, availableCoffee);
-
-        int extraCups = availableCups  - requiredCups;
-
-        if  (availableCups == requiredCups) {
-            System.out.println("Yes, I can make that amount of coffee");
-        } else if (availableCups < requiredCups) {
-            System.out.println("No, I can make only " + availableCups + " cup(s) of coffee");
-        } else {
-            System.out.println("Yes, I can make that amount of coffee (and even "
-                                                                        + extraCups + " more than that)");
-        }*/
     }
 
      static class Coffee {
@@ -100,8 +66,6 @@ public class CoffeeMachine {
             this.price = price;
         }
     }
-
-
 
     public static void fill(int [] machineState){
         Scanner input = new Scanner(System.in);
@@ -133,11 +97,4 @@ public class CoffeeMachine {
     }
 
 
-    public static int checkIngredients(int availableWater, int availableMilk,
-                                       int availableCoffee){
-        int cupsWater = availableWater / WATER_PER_CUP;
-        int cupsMilk = availableMilk / MILK_PER_CUP;
-        int cupsCoffee = availableCoffee / COFFEE_PER_CUP;
-        return Math.min(cupsWater, Math.min(cupsMilk, cupsCoffee));
-    }
 }
