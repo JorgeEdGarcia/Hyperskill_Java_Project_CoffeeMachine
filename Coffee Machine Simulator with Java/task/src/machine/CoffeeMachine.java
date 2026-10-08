@@ -8,19 +8,19 @@ public class CoffeeMachine {
 
         //{water, milk, coffeBeans, disposableCups, money}
         int [] machineState = {400, 540, 120, 9, 550};
-        String userAction;
+        String userChoice;
 
         do {
             System.out.println();
             System.out.println("Write action (buy, fill, take, remaining, exit):");
 
-            userAction = input.nextLine();
+            userChoice = input.nextLine();
 
-            if (userAction.equals("fill")) {
+            if (userChoice.equals("fill")) {
                 fill(machineState, input);
-            } else if (userAction.equals("take")) {
+            } else if (userChoice.equals("take")) {
                 take(machineState);
-            } else if (userAction.equals("buy")) {
+            } else if (userChoice.equals("buy")) {
                 Coffee espresso =
                         new Coffee("Espresso", 250, 0, 16, 4);
                 Coffee latte =
@@ -41,7 +41,7 @@ public class CoffeeMachine {
                 if (selectedCoffee != null) {
                     buy(machineState, selectedCoffee);
                 }
-            } else if (userAction.equals("remaining")) {
+            } else if (userChoice.equals("remaining")) {
                 System.out.println();
                 System.out.println("The coffee machine has:");
                 System.out.println(machineState[0] + " ml of water");
@@ -50,7 +50,7 @@ public class CoffeeMachine {
                 System.out.println(machineState[3] + " disposable cups");
                 System.out.println("$" + machineState[4] + " of money");
             }
-        } while (!userAction.equals("exit"));
+        } while (!userChoice.equals("exit"));
 
     }
 
@@ -58,14 +58,14 @@ public class CoffeeMachine {
         String name;
         int water;
         int milk;
-        int coffeeBeans;
+        int beans;
         int price;
 
-        public Coffee(String name, int water, int milk, int coffeeBeans, int price) {
+        public Coffee(String name, int water, int milk, int beans, int price) {
             this.name = name;
             this.water = water;
             this.milk = milk;
-            this.coffeeBeans = coffeeBeans;
+            this.beans = beans;
             this.price = price;
         }
     }
@@ -100,7 +100,7 @@ public class CoffeeMachine {
             System.out.println("Sorry, not enough water!");
         } else if (machineState[1] < coffee.milk) {
             System.out.println("Sorry, not enough milk!");
-        } else if (machineState[2] < coffee.coffeeBeans) {
+        } else if (machineState[2] < coffee.beans) {
             System.out.println("Sorry, not enough coffee beans!");
         } else if (machineState[3] < 1) {
             System.out.println("Sorry, not enough disposable cups!");
@@ -109,7 +109,7 @@ public class CoffeeMachine {
 
             machineState[0] -= coffee.water;
             machineState[1] -= coffee.milk;
-            machineState[2] -= coffee.coffeeBeans;
+            machineState[2] -= coffee.beans;
             machineState[3]--;
             machineState[4] += coffee.price;
         }
